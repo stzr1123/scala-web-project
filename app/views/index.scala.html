@@ -1,4 +1,4 @@
-@()
+@(sunInfo: model.SunInfo)
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,6 +7,9 @@
            href="@routes.Application.versioned("images/favicon.png")">
     </head>
     <body>
-        <h1>Hello Play</h1>
+        <h1>This time I'm learning Scala for realz</h1>
+
+        <div>Sunrise time: @sunInfo.sunrise</div>
+        <div>Sunset time: @sunInfo.sunset</div>
     </body>
 </html>
