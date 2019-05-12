@@ -1,4 +1,4 @@
-@(sunInfo: model.SunInfo)
+@(sunInfo: model.SunInfo, temperature: Double)
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,9 +7,10 @@
            href="@routes.Application.versioned("images/favicon.png")">
     </head>
     <body>
-        <h1>This time I'm learning Scala for realz</h1>
+        <h1>Munich info portal:</h1>
 
         <div>Sunrise time: @sunInfo.sunrise</div>
         <div>Sunset time: @sunInfo.sunset</div>
+        <div>Current temp: @temperature</div>
     </body>
 </html>
