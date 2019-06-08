@@ -1,26 +1,16 @@
 package controllers
 
 import controllers.Assets.Asset
-import javax.inject._
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import model.SunInfo
-import play.api.libs.ws._
-import java.time.{ZoneId, ZonedDateTime}
-import java.time.format.DateTimeFormatter
 
-import play.api.libs.json.JsValue
 import services.{SunService, WeatherService}
 
-import scala.concurrent.Future
 
-
-class Application @Inject() (components: ControllerComponents, assets: Assets, ws: WSClient)
+class Application(components: ControllerComponents, assets: Assets,
+                  sunService: SunService, weatherService: WeatherService)
     extends AbstractController(components) {
-
-  val sunService = new SunService(ws)
-  val weatherService = new WeatherService(ws)
 
   def index: Action[AnyContent] = Action.async {
 
