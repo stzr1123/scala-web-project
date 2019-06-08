@@ -11,6 +11,8 @@ import play.api
 import play.filters.HttpFiltersComponents
 import services.{SunService, WeatherService}
 
+import scala.concurrent.Future
+
 class AppApplicationLoader extends ApplicationLoader {
   def load(context: Context): api.Application = {
     LoggerConfigurator(context.environment.classLoader).foreach { cfg =>
@@ -30,5 +32,14 @@ class AppComponents(context: Context) extends BuiltInComponentsFromContext(conte
 
   lazy val sunService: SunService = wire[SunService]
   lazy val weatherService: WeatherService = wire[WeatherService]
+
+  val onStart: Unit = {
+    Logger.info("Starting the app...")
+  }
+
+  applicationLifecycle.addStopHook { () =>
+    Logger.info("Stopping the app...")
+    Future.successful(Unit)
+  }
 
 }
