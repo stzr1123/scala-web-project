@@ -1,0 +1,41 @@
+{
+  "name": "scala-web-project",
+  "version": "1.0.0",
+  "description": "from the modern web development book",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stzr1123/scala-web-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stzr1123/scala-web-project/issues"
+  },
+  "homepage": "https://github.com/stzr1123/scala-web-project#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^1.0.0",
+    "exports-loader": "^0.7.0",
+    "imports-loader": "^0.8.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "axios": "^0.14.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}

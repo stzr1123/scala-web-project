@@ -8,10 +8,7 @@
     </head>
     <body>
         <h1>Munich info portal:</h1>
-
-        <div>Sunrise time: @sunInfo.sunrise</div>
-        <div>Sunset time: @sunInfo.sunset</div>
-        <div>Current temp: @temperature</div>
-        <div>Requests: @requests</div>
+        <div id="reactView"></div>
     </body>
+    <script src="@routes.Application.versioned("compiled/bundle.js")"></script>
 </html>
