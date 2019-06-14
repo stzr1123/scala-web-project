@@ -25,6 +25,10 @@ class Application(components: ControllerComponents,
     Ok(views.html.index())
   }
 
+  def login: Action[AnyContent] = Action {
+    Ok(views.html.login())
+  }
+
   def data: Action[AnyContent] = Action.async {
 
     val lat: Double = 48.1222839
