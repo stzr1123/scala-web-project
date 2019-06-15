@@ -15,7 +15,9 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc" % "3.3.2",
   "org.scalikejdbc" %% "scalikejdbc-config" % "3.3.2",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
-  "de.svenkubiak" % "jBCrypt" % "0.4.1"
+  "de.svenkubiak" % "jBCrypt" % "0.4.1",
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % "test",
+  "org.mockito" % "mockito-core" % "2.7.22" % "test"
 )
 
 resolvers += "sonatype-snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
