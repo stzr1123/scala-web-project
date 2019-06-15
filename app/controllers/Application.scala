@@ -10,6 +10,8 @@ import controllers.Assets.Asset
 import model.CombinedData
 import play.api.mvc._
 import play.api.libs.json.Json
+import play.api.data.Form
+import play.api.data.Forms._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import services.{SunService, WeatherService}

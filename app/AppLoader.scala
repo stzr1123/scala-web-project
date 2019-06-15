@@ -12,10 +12,11 @@ import actors.StatsActor.Ping
 import akka.actor.{ActorRef, Props}
 import filters.StatsFilter
 import play.api
+import play.api.cache.caffeine.CaffeineCacheComponents
 import play.api.db.{DBComponents, HikariCPComponents}
 import play.api.db.evolutions.{DynamicEvolutions, EvolutionsComponents}
 import play.filters.HttpFiltersComponents
-import services.{SunService, WeatherService}
+import services.{AuthService, SunService, WeatherService}
 import scalikejdbc.config.DBs
 
 import scala.concurrent.Future
@@ -33,7 +34,7 @@ class AppComponents(context: Context)
   extends BuiltInComponentsFromContext(context)
     with AhcWSComponents with EvolutionsComponents
     with DBComponents with HikariCPComponents
-    with AssetsComponents with HttpFiltersComponents {
+    with CaffeineCacheComponents with AssetsComponents with HttpFiltersComponents {
 
   private val log = Logger(this.getClass)
 
@@ -47,6 +48,7 @@ class AppComponents(context: Context)
   lazy val applicationController: Application = wire[Application]
   lazy val sunService: SunService = wire[SunService]
   lazy val weatherService: WeatherService = wire[WeatherService]
+  lazy val authService = new AuthService(defaultCacheApi.sync)
 
   lazy val statsActor: ActorRef = actorSystem.actorOf(Props(wire[StatsActor]), StatsActor.name)
 
