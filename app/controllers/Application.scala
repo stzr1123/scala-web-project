@@ -26,7 +26,7 @@ class Application(components: ControllerComponents,
                   userAuthAction: UserAuthAction,
                   actorSystem: ActorSystem) extends AbstractController(components) {
 
-  def index: Action[AnyContent] = Action {
+  def index: Action[AnyContent] = userAuthAction {
     Ok(views.html.index())
   }
 
@@ -63,7 +63,7 @@ class Application(components: ControllerComponents,
 
   }
 
-  def data: Action[AnyContent] = Action.async {
+  def data: Action[AnyContent] = userAuthAction.async {
 
     val lat: Double = 48.1222839
     val lon: Double = 11.5402938
