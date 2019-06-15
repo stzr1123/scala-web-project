@@ -8,19 +8,21 @@ import akka.util.Timeout
 import akka.pattern.ask
 import controllers.Assets.Asset
 import model.CombinedData
+import model.UserLoginData
 import play.api.mvc._
 import play.api.libs.json.Json
 import play.api.data.Form
 import play.api.data.Forms._
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import services.{SunService, WeatherService}
+import services.{AuthService, SunService, WeatherService}
 
 
 class Application(components: ControllerComponents,
                   assets: Assets,
                   sunService: SunService,
                   weatherService: WeatherService,
+                  authService: AuthService,
                   actorSystem: ActorSystem) extends AbstractController(components) {
 
   def index: Action[AnyContent] = Action {
@@ -28,7 +30,32 @@ class Application(components: ControllerComponents,
   }
 
   def login: Action[AnyContent] = Action {
-    Ok(views.html.login())
+    Ok(views.html.login(None))
+  }
+
+  val userDataForm: Form[UserLoginData] = Form {
+    mapping(
+      "username" -> nonEmptyText,
+      "password" -> nonEmptyText
+    )(UserLoginData.apply)(UserLoginData.unapply)
+  }
+
+  def doLogin: Action[AnyContent] = Action { implicit request =>
+    userDataForm.bindFromRequest.fold(
+      _ => Ok(views.html.login(Some("Fields can't be empty!"))), // formWithErrors
+      userData => {
+        val maybeCookie = authService.login(
+          userData.username, userData.password
+        )
+        maybeCookie match {
+          case Some(cookie) =>
+            Redirect("/").withCookies(cookie)
+          case None =>
+            Ok(views.html.login(Some("Username or password are wrong")))
+        }
+      }
+    )
+
   }
 
   def data: Action[AnyContent] = Action.async {
