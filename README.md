@@ -3,10 +3,12 @@ Following the instruction from the book Modern Web Development with Scala by Den
 
 Simple Web app that displays weather and other info for Munich.
 
-* Backend is Play
+* Backend is Play 2.7
 * React is used for rendering a simple table
 * Concise is used for styling
 * Users are stored in Postgres
+
+Test user (automatically populated into DB) is `stest` with pass `password123`.
 
 ## Run Postgres
 
