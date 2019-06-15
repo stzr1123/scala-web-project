@@ -4,7 +4,7 @@ import java.security.MessageDigest
 import java.util.concurrent.TimeUnit
 import java.util.{Base64, UUID}
 
-import play.api.mvc.Cookie
+import play.api.mvc.{Cookie, RequestHeader}
 import play.api.cache.SyncCacheApi
 import model.User
 import org.mindrot.jbcrypt.BCrypt
@@ -22,6 +22,15 @@ class AuthService(cacheApi: SyncCacheApi) {
       cookie <- Some(createCookie(user))
     } yield {
       cookie
+    }
+  }
+
+  def checkCookie(header: RequestHeader): Option[User] = {
+    for {
+      cookie <- header.cookies.get(cookieHeader)
+      user <- cacheApi.get[User](cookie.value)
+     } yield {
+      user
     }
   }
 

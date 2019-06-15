@@ -8,7 +8,7 @@ Simple Web app that displays weather and other info for Munich.
 * Concise is used for styling
 * Users are stored in Postgres
 
-Test user (automatically populated into DB) is `stest` with pass `password123`.
+Test user (automatically populated) is `stest` with pass `password123`.
 
 ## Run Postgres
 

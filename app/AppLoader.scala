@@ -16,7 +16,7 @@ import play.api.cache.caffeine.CaffeineCacheComponents
 import play.api.db.{DBComponents, HikariCPComponents}
 import play.api.db.evolutions.{DynamicEvolutions, EvolutionsComponents}
 import play.filters.HttpFiltersComponents
-import services.{AuthService, SunService, WeatherService}
+import services.{AuthService, SunService, UserAuthAction, WeatherService}
 import scalikejdbc.config.DBs
 
 import scala.concurrent.Future
@@ -49,6 +49,7 @@ class AppComponents(context: Context)
   lazy val sunService: SunService = wire[SunService]
   lazy val weatherService: WeatherService = wire[WeatherService]
   lazy val authService = new AuthService(defaultCacheApi.sync)
+  lazy val userAuthAction: UserAuthAction = wire[UserAuthAction]
 
   lazy val statsActor: ActorRef = actorSystem.actorOf(Props(wire[StatsActor]), StatsActor.name)
 

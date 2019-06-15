@@ -6,4 +6,6 @@ POST    /login                      controllers.Application.doLogin
 
 GET     /data                       controllers.Application.data
 
+GET     /restricted                 controllers.Application.restricted
+
 GET     /assets/*file               controllers.Application.versioned(path="/public", file: Asset)

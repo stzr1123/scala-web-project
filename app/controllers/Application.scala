@@ -15,7 +15,7 @@ import play.api.data.Form
 import play.api.data.Forms._
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import services.{AuthService, SunService, WeatherService}
+import services.{AuthService, SunService, UserAuthAction, WeatherService}
 
 
 class Application(components: ControllerComponents,
@@ -23,6 +23,7 @@ class Application(components: ControllerComponents,
                   sunService: SunService,
                   weatherService: WeatherService,
                   authService: AuthService,
+                  userAuthAction: UserAuthAction,
                   actorSystem: ActorSystem) extends AbstractController(components) {
 
   def index: Action[AnyContent] = Action {
@@ -31,6 +32,10 @@ class Application(components: ControllerComponents,
 
   def login: Action[AnyContent] = Action {
     Ok(views.html.login(None))
+  }
+
+  def restricted: Action[AnyContent] = userAuthAction { userAuthRequest =>
+    Ok(views.html.restricted(userAuthRequest.user))
   }
 
   val userDataForm: Form[UserLoginData] = Form {
