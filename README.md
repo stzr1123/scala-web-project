@@ -48,3 +48,8 @@ $ npm run watch
 ```$xslt
 $ sbt run
 ```
+
+## Run tests
+```$xslt
+$ sbt test
+```
