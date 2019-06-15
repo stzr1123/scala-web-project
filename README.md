@@ -1,4 +1,2 @@
 # scala-web-project
-from the modern web development book
-
-small change
+following the instruction from the book Modern Web Development with Scala by Denis Kalinin 
