@@ -34,6 +34,10 @@ class SunWeatherComponent extends React.Component {
                 <td>{this.state.sunset}</td>
             </tr>
             <tr>
+                <td>Temperature (C)</td>
+                <td>{this.state.temperature}</td>
+            </tr>
+            <tr>
                 <td>Requests</td>
                 <td>{this.state.requests}</td>
             </tr>
